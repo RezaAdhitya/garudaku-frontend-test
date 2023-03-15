@@ -18,12 +18,66 @@ repo for garudaku frontend developer test
     <th>Notes</th>
   </tr>
   <tr>
-    <td>1</td>
+    <td>v0.1</td>
     <td>initialization</td>
     <td>
       <ul>
         <li>Node version switch using nvm</li>
         <li>Repo initialization</li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td>v0.3</td>
+    <td>setting up environment</td>
+    <td>
+      <ul>
+        <li>dependencies installation</li>
+        <li>setting up nuxtJS</li>
+        <li>setting up SCSS</li>
+        <li>setting up vuex </li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td>v0.5</td>
+    <td>configure methods</td>
+    <td>
+      <ul>
+        <li>setting up fetching methods</li>
+        <li>preparing detail fetching </li>
+        <li>preparing edit methods</li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td>v0.7</td>
+    <td>layouting</td>
+    <td>
+      <ul>
+        <li>pages layouting</li>
+        <li>component layouting</li>
+        <li>wiring methods with templates</li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td>v0.9</td>
+    <td>implement atomic design</td>
+    <td>
+      <ul>
+        <li>splitting components</li>
+        <li>setting up links between components</li>
+        <li>final layouting</li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td>v1.0</td>
+    <td>deployment</td>
+    <td>
+      <ul>
+        <li>deployment using firebase</li>
       </ul>
     </td>
   </tr>
