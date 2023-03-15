@@ -1,6 +1,7 @@
 export const state = () => ({
   fetchedNews: [],
-  newsDetail: {}
+  newsDetail: {},
+  isLoading: false
 })
 
 export const getters = {
@@ -13,6 +14,10 @@ export const getters = {
   getDetail: (state) => (id) =>  {
     let result = state.fetchedNews.find(el => el.id === +id)
     return result
+  },
+
+  getLoading(state) {
+    return state.isLoading
   }
 }
 
@@ -33,6 +38,14 @@ export const mutations = {
   // updated element after edit
   editDetail(state, payload) {
     state.fetchedNews.splice(payload.index, 1, payload.newData)
+  },
+
+  onLoading(state) {
+    state.isLoading = true
+  },
+
+  offLoading(state) {
+    state.isLoading = false
   }
 }
 
@@ -41,6 +54,7 @@ export const actions = {
   // this method is to fetch all news data using axios
   async fetchNews(context, subCategory) {
     try {
+      context.commit('onLoading')
       if(!subCategory) {
         subCategory = 'politics'
       }
@@ -70,6 +84,7 @@ export const actions = {
 
       // assigning it to the state using mutation
       context.commit('fetchNews', posts) 
+      context.commit('offLoading')
     } catch (err) {
       console.log(err);
     }

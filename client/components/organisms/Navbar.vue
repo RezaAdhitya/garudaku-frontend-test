@@ -4,7 +4,10 @@
       <img src="/logo-garudaku-news.png" />
     </div>
     <div class="nav-links">
-      <p v-on:click="$router.push('/')">Home</p>
+      <p v-on:click="$router.push('/')">HOME</p>
+      <p>ABOUT</p>
+      <p>CONTACT US</p>
+      <p>FAQ</p>
     </div>
   </div>
 </template>
@@ -17,7 +20,7 @@
   background-color: $secondary-500;
   width: 100%;
   height: 10vh;
-  padding: 0 1rem;
+  padding: 0 5rem;
   column-gap: 1rem ;
   display: fixed;
   position: fixed;
@@ -36,17 +39,19 @@
 .flex-row {
   display: flex;
   flex-direction: row;
-  justify-content: flex-start;
+  justify-content: space-between;
   align-items: center;
 }
 
 .nav-links {
+  display: flex;
+  gap: 1rem;
   cursor: pointer;
+
+  p:hover {
+    color: $primary-500;
+    transition: $transition
+  }
 }
 
-.nav-links:hover {
-  color: $primary-500;
-  font-weight: bold;
-  transition: $transition
-}
 </style>

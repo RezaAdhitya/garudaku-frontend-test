@@ -2,7 +2,10 @@
   <div class="container">
     <Navbar />
     <div class="main-content">
-      <div class="news-content">
+      <div v-if="getLoading" class="loading">
+        <img src="/loading.gif" />
+      </div>
+      <div v-if="!getLoading" class="news-content">
         <NewsCard
           v-for="news in fetchedNews" :news="news" :key="news.id"
         />
@@ -12,7 +15,7 @@
 </template>
 
 <script>
-import { mapState, mapActions } from 'vuex'
+import { mapState, mapActions, mapGetters } from 'vuex'
 import Navbar from '../components/organisms/Navbar.vue'
 import PrimaryButton from '../components/atoms/PrimaryButton.vue'
 import NewsCard from '../components/molecules/NewsCard.vue'
@@ -24,7 +27,8 @@ export default {
     NewsCard
   },
   computed: {
-    ...mapState(['fetchedNews'])
+    ...mapState(['fetchedNews']),
+    ...mapGetters(['getLoading'])
   },
   methods: {
     ...mapActions(['fetchNews','fetchDetailNews']),
