@@ -39,27 +39,32 @@ export default {
     }
   },
   computed: {
-    ...mapState(['counter', 'fetchedNews', 'newsDetail']),
+    ...mapState(['fetchedNews']),
     ...mapGetters(['getDetail']),
     setDetail() {
-      console.log('this');
       return this.getDetail(this.$route.params.id)
     }
   },
   methods: {
     ...mapActions(['fetchDetailNews', 'editNews']),
     updateFormData() {
-      this.formData.title = this.getDetail(this.$route.params.id).title
-      this.formData.article = this.getDetail(this.$route.params.id).article
-      this.formData.image = this.getDetail(this.$route.params.id).image
+      let newsDetail = this.getDetail(this.$route.params.id)
+      this.formData.title = newsDetail.title
+      this.formData.article = newsDetail.article
+      this.formData.image = newsDetail.image
     },
     handleSubmitForm(formData) {
-      this.editNews(formData)
+      this.editNews({id: this.$route.params.id, formData})
+      this.$router.push(`/details/${this.$route.params.id}`)
     }
   },
   
   created() {
-   this.updateFormData()
+    if(this.fetchedNews.length > 0) {
+      this.updateFormData()
+    } else {
+      this.$router.push('/')
+    }
   }
 }
 </script>
