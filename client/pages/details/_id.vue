@@ -1,8 +1,9 @@
 <template>
   <div>
     THIS IS DETAILS
-    DETAIL: {{ getDetail($route.params.id).headline }}
+    DETAIL: {{ getDetail($route.params.id)?.title }}
     <div class="button-edit">
+      <button v-on:click="$router.push(`/`)" >Home</button>
       <button v-on:click="$router.push(`/edit/${$route.params.id}`)" >Edit</button>
     </div>
   </div>
@@ -11,21 +12,17 @@
 <script>
 import { mapState, mapActions, mapGetters } from 'vuex'
 export default {
-  data() {
-    return {
-      detail: this.getDetail
-    }
-  },
   computed: {
-    ...mapState(['counter', 'fetchedNews', 'newsDetail']),
+    ...mapState(['fetchedNews', 'newsDetail']),
     ...mapGetters(['getDetail'])
   },
   methods: {
     ...mapActions(['fetchDetailNews']),
   },
-  // created() {
-  //   let a = this.getDetail(this.$route.params.slug)
-  //   console.log(a, 'created');
-  // }
+  created() {
+    if(this.fetchedNews.length === 0) {
+      this.$router.push('/')
+    }
+  }
 }
 </script>

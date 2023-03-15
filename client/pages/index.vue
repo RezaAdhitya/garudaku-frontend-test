@@ -23,10 +23,6 @@
         >
           GitHub
         </a>
-        <div class="div">
-          Display counter {{ counter }}
-          <button v-on:click="increment">increment</button>
-        </div>
         <div class="main-content">
           <h1>This is news content</h1>
           <div class="news-content">
@@ -50,10 +46,9 @@ export default {
     Logo
   },
   computed: {
-    ...mapState(['counter', 'fetchedNews'])
+    ...mapState(['fetchedNews'])
   },
   methods: {
-    ...mapMutations(['increment']),
     ...mapActions(['fetchNews','fetchDetailNews']),
   },
   created() {
