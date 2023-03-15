@@ -39,9 +39,13 @@ export const mutations = {
 export const actions = {
 
   // this method is to fetch all news data using axios
-  async fetchNews(context) {
+  async fetchNews(context, subCategory) {
     try {
-      let data = await this.$axios.$get('https://jakpost.vercel.app/api/category/indonesia/politics/page/1')
+      if(!subCategory) {
+        subCategory = 'politics'
+      }
+
+      let data = await this.$axios.$get('https://jakpost.vercel.app/api/category/indonesia/' + subCategory)
 
       /* 
         method below is to assign id, slug, and article to the fetched data's elements.
@@ -57,6 +61,8 @@ export const actions = {
 
           // axios get request to obtain article data
           let detail = await this.$axios.$get(el.link)
+          el.bigImage = detail.detail_post.image
+          el.image_desc = detail.detail_post.image_desc
           el.article = detail.detail_post.post_content
           return el
         })
@@ -82,7 +88,7 @@ export const actions = {
       ...previousData,
       title: formData.title,
       article: formData.article,
-      image: formData.image
+      bigImage: formData.image
     }
 
     // assigning it to the state using mutation
